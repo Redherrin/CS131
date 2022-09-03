@@ -1,0 +1,117 @@
+    1  passwd
+    2  ping 172.31.197.164
+    3  wget www.github.com
+    4  ls
+    5  rm index.html
+    6  ls
+    7  wget    https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Books_v1_02.tsv.gz
+    8  git status
+    9  ls
+   10  git
+   11  git clone https://github.com/Redherrin/CS131
+   12  ls
+   13  cd CS131
+   14  ls
+   15  cd ..
+   16  git status
+   17  cd CS131
+   18  git
+   19  git status
+   20  git branch
+   21  git branch -a
+   22  cd ..
+   23  git clone -b WS1 https://github.com/Redherrin/CS131
+   24  git clone -b WS1 https://github.com/Redherrin/CS131 WS1
+   25  cd
+   26  ls
+   27  cd WS1
+   28  cd ..
+   29  rm WS1
+   30  cd WS1
+   31  ls
+   32  WS1
+   33  cd WS1
+   34  ls
+   35  cd ....
+   36  cd ../..
+   37  ls
+   38  rmdir WS1
+   39  rm -r WS1
+   40  ls
+   41  git status
+   42  cd CS131
+   43  git status
+   44  git checkout WS1
+   45  git status
+   46  git checkout maaster
+   47  git checkout main
+   48  git branch -a
+   49  git checkout master
+   50  git checkout WS1
+   51  git checkout -b WS2
+   52  mkdir WS2
+   53  ls
+   54  git status
+   55  cd WS2
+   56  git status
+   57  cd ../../..
+   58  ls
+   59  cd kevin
+   60  ls
+   61  tar zxvf amazon_reviews_us_Books_v1_02.tsv.gz
+   62  gzip
+   63* gzip -d 
+   64  gzip -d amazon_reviews_us_Books_v1_02.tsv.gz
+   65  ls
+   66  man grep
+   67  grep amazon_reviews_us_Books_v1_02.tsv
+   68* cat amazon_reviews_us_Books_v1_02.tsv [1;5D
+   69  head -n 10 amazon_reviews_us_Books_v1_02.tsv
+   70  head -n 3 amazon_reviews_us_Books_v1_02.tsv
+   71  wc amazon_reviews_us_Books_v1_02.tsv
+   72  man grep
+   73  head -n 15 amazon_reviews_us_Books_v1_02.tsv
+   74  wc -l amazon_reviews_us_Books_v1_02.tsv
+   75  head -l amazon_reviews_us_Books_v1_02.tsv
+   76  head -n l amazon_reviews_us_Books_v1_02.tsv
+   77  head -n 1 amazon_reviews_us_Books_v1_02.tsv
+   78  head -n 2 amazon_reviews_us_Books_v1_02.tsv
+   79  wc -l amazon_reviews_us_Books_v1_02.tsv
+   80  tail -n 2 amazon_reviews_us_Books_v1_02.tsv
+   81  head -n 3 amazon_reviews_us_Books_v1_02.tsv
+   82  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep \tN\t
+   83  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep N
+   84  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep "\tN\t"
+   85  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep \N\N
+   86  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep \tN\t
+   87  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep \t
+   88  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep "\t"
+   89  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'
+   90  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N
+   91  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N$'\t'
+   92  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N$*?'\t'
+   93  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N$.*?'\t'
+   94  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N$.*'\t'
+   95  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep $'\t'N$.'\t'
+   96  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P \tN
+   97  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t'
+   98  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN'
+   99* head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P 'CS131/[CtN\t'
+  100  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN.*?\t'
+  101  grep -P '\tN.*?\t' amazon_reviews_us_Books_v1_02.tsv
+  102  grep -P '\tN.*?\t' amazon_reviews_us_Books_v1_02.tsv | wc
+  103  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN.*?\t'
+  104  head -n 1 amazon_reviews_us_Books_v1_02.tsv
+  105  head -n 2 amazon_reviews_us_Books_v1_02.tsv
+  106  cat amazon_reviews_us_Books_v1_02.tsv | grep 51947543
+  107  head -n 13 amazon_reviews_us_Books_v1_02.tsv
+  108  wc -l amazon_reviews_us_Books_v1_02.tsv
+  109  cat amazon_reviews_us_Books_v1_02.tsv | grep -p '\tn\t'
+  110  head -n 13 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tn\t'
+  111  head -n 13 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN\t'
+  112* cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc > 
+  113  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc
+  114  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc > counts.txt
+  115  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc >> counts.txt
+  116  cat counts.txt
+  117  history > ws2_cmds.log
