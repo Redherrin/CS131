@@ -60,12 +60,12 @@
    60  ls
    61  tar zxvf amazon_reviews_us_Books_v1_02.tsv.gz
    62  gzip
-   63* gzip -d 
+   63  gzip -d 
    64  gzip -d amazon_reviews_us_Books_v1_02.tsv.gz
    65  ls
    66  man grep
    67  grep amazon_reviews_us_Books_v1_02.tsv
-   68* cat amazon_reviews_us_Books_v1_02.tsv [1;5D
+   68  cat amazon_reviews_us_Books_v1_02.tsv [1;5D
    69  head -n 10 amazon_reviews_us_Books_v1_02.tsv
    70  head -n 3 amazon_reviews_us_Books_v1_02.tsv
    71  wc amazon_reviews_us_Books_v1_02.tsv
@@ -96,7 +96,7 @@
    96  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P \tN
    97  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t'
    98  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN'
-   99* head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P 'CS131/[CtN\t'
+   99  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P 'CS131/[CtN\t'
   100  head -n 3 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN.*?\t'
   101  grep -P '\tN.*?\t' amazon_reviews_us_Books_v1_02.tsv
   102  grep -P '\tN.*?\t' amazon_reviews_us_Books_v1_02.tsv | wc
@@ -109,9 +109,97 @@
   109  cat amazon_reviews_us_Books_v1_02.tsv | grep -p '\tn\t'
   110  head -n 13 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tn\t'
   111  head -n 13 amazon_reviews_us_Books_v1_02.tsv | grep -P '\tN\t'
-  112* cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc > 
+  112  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc > 
   113  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc
   114  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc > counts.txt
   115  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc >> counts.txt
   116  cat counts.txt
   117  history > ws2_cmds.log
+  118  ls
+  119  cd CS131
+  120  ls
+  121  cd ..
+  122  mv counts.txt CS131/WS2
+  123  cd CS131/WS2
+  124  ls
+  125  cd ../..
+  126  ls
+  127  mv ws2_cmds.log CS131/WS2
+  128  cd CS131
+  129  ls
+  130  cd WS2
+  131  ls
+  132  git status
+  133  cd ..
+  134  git status
+  135  get checkout WS2
+  136  git checkout WS2
+  137  git add WS2/
+  138  git status
+  139  git commit -m "Created WS2 directory; created counts.txt and ws2_cmds.log"
+  140  git config user.name
+  141  git config --global user.name "Kevin Ngo"
+  142  git config --global user.email "14843304+Redherrin@users.noreply.github.com"
+  143  git config user.email
+  144  git commit -m "Created WS2 directory; created counts.txt and ws2_cmds.log"
+  145  git push origin WS2
+  146  ls
+  147  cd CS131
+  148  ls
+  149  cd ..
+  150  man cat
+  151  man cut
+  152  "test shi on" > test.txt
+  153  printf "test shi on\n" > test.txt
+  154  ls
+  155  cat test.txt
+  156  man cut
+  157  cut test.txt
+  158  cut --help
+  159  cut -d " " -f 0 test.txt
+  160  cut -d " " -f 1 test.txt
+  161  cut -d " " -f 3 --complement test.txt
+  162  vi test.txt
+  163  cat test.txt
+  164  cat amazon_reviews_us_Books_v1_02.tsv | grep -p '\t[NY]\tN\t" | wc
+  165  cat amazon_reviews_us_Books_v1_02.tsv | grep -p '\t[NY]\tN\t" | wc | cut -f 3 --complement > counts.txt
+  166  ls
+  167  cat amazon_reviews_us_Books_v1_02.tsv
+  168  cat amazon_reviews_us_Books_v1_02.tsv | grep -p '\t[NY]\tN\t"
+  169  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -p '\t[NY]\tN\t"
+  170  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t"
+  171  head -n 4 amazon_reviews_us_Books_v1_02.tsv
+  172  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t'
+  173  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --compliment > counts.txt
+  174  man cut
+  175  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement > counts.txt
+  176  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc | cut -f 3 --complement >> counts.txt
+  177  cat counts.txt
+  178  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc | cut -f 3 --complement
+  179  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement > counts.txt
+  180  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc
+  181  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement > counts.txt
+  182  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement
+  183  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d "\t" -f 3 --complement
+  184  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d \t -f 3 --complement
+  185  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d \t -f 2 --complement
+  186  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 2 --complement
+  187  cat counts.txt
+  188  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 2 --complement > counts.txt
+  189  cat counts.txt
+  190  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement > counts.txt
+  191  cat counts.txt
+  192  vi counts.txt
+  193  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d -f 3 --complement
+  194  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d " " -f 3 --complement
+  195  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d "    " -f 3 --complement
+  196  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -d "" -f 3 --complement
+  197  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc | cut -f 3 --complement
+  198  man wc
+  199  head -n 4 amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc -l -w
+  200  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tN\t' | wc -l -w > counts.txt
+  201  cat amazon_reviews_us_Books_v1_02.tsv | grep -P '\t[NY]\tY\t' | wc -l -w >> counts.txt
+  202  cat counts.txt
+  203  vi counts.txt
+  204  cat counts.txt
+  205  history > ws2_cmds.log

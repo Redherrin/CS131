@@ -1,2 +1,2 @@
- 229346 44402864 262428121
-2876174 505766888 2976274217
+The number of unverified reviews is 2876174. The word count for these unverified reviews is 505766888.
+The number of verified reviews is 229346. The word count for these unverified reviews is 44402864.
