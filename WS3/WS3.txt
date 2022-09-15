@@ -1,0 +1,23 @@
+Script started on 2022-09-15 18:15:27-04:00
+
+######################### QUESTION 1 #########################################################
+
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcd A1[3Plscd ..git status[5Pcd ..[3Plscd A1[3Plscat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat downloaded_hashtags_extend_ASCII.csv | grep -i "Great" | wc -l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcut -f 4 a[K[K[K2 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n -k 1 | tail -n 3
+   2664 52615377
+   9964 50732546
+  21922 50122160
+
+The top 3 cusomers are 52615377 with 2664 reviews, 50732546 with 9964 reviews, and 50122160 with 21922 reviews.
+
+######################### QUESTION 2 ##########################################################
+
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 2 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n -k 1 | tail -n 3[C[1P[1@4
+   2666 0525947647
+   3739 0439139597
+   4625 043935806X
+
+The products with the most reviews are 0525947647 with 2666 reviews, 0439139567 with 3739 reviews, and 043935806X with 4625 reviews.
+
+]0;kevin@sjsu:~[kevin@sjsu ~]$ exit
+
+Script done on 2022-09-15 18:18:56-04:00

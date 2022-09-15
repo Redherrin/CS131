@@ -1,0 +1,25 @@
+  561  cat amazon_reviews_us_Books_v1_02.tsv 
+  562  head amazon_reviews_us_Books_v1_02.tsv 
+  563  head -n 1 amazon_reviews_us_Books_v1_02.tsv 
+  564  cut -f 1 amazon_reviews_us_Books_v1_02.tsv | head -n 1 
+  565  cut -f 2 amazon_reviews_us_Books_v1_02.tsv | head -n 1 
+  566  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | head -n 1 
+  567  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c
+  568  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | head -n 3
+  569  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort | head -n 3
+  570  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n | head -n 3
+  571  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | head -n 100
+  572  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | head -n 100
+  573  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | cut -f 1 | sort
+  574  head -n 200 | cut -f 4 | sort | uniq -c | cut -f 1
+  575  cut -f 4 amazon_reviews_us_Books_v1_02.tsv
+  576  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n
+  577  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n -k 1 | tail -n 3
+  578  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -nr -k 1
+  579  cut -f 4 amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -n -k 1 | tail -n 3
+  580  script WS3.txt
+  581  history > WS3_cmd.log
+  582  cat WS3_cmd.log 
+  583  cat WS3.txt
+  584  vi WS3.txt
+  585  history > WS3_cmds.log
