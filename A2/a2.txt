@@ -1,0 +1,187 @@
+Script started on 2022-09-30 01:03:28-04:00
+
+
+############### QUESTION 0 ######################################
+
+
+
+############### QUESTION 1 ######################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | cut -f 1 | sort | uniq -c | sort -n -k 1 | tail -n 10 
+      9 531618878
+     10 1401861298233647106
+     10 90107770
+     11 29447428
+     14 940778288871542786
+     15 94350709
+     17 1240682348120866816
+     17 1921951394
+     19 1573800344
+     34 1387010761994682371
+
+############### QUESTION 2 ######################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | cut -f 2 | sort | uniq -c | sort -n -k 1 | tail -n 10 
+     10 48624704
+     10 95091601
+     11 1462548977367359490
+     12 1120633726478823425
+     12 19739126
+     12 21525682
+     13 1108565574
+     14 1238370241169616897
+     28 29447428
+     46 3453306553
+
+############### QUESTION 3 ######################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep -E "retweeted" downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 2 | sort | uniq -c | sort -n -k 1 | tail -n 10
+   1139 1060440219097423872
+   1159 29447428
+   1216 832019161454817280
+   1234 177400353
+   1281 139109800
+   1312 711608180535640064
+   1582 1028022611324747776
+   1641 870244616003403781
+   1678 77726331
+   2065 45379403
+
+############## QUESTION 5 #######################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 4 downloaded_tweets_extend_nolf2_NOBOT.tsv | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+    236 cdnpoli
+    239 onpoli
+    251 Ukrainian
+    252 VoteFordOut
+    260 BoycottRussia
+    262 Ottawa
+    263 Genocide
+    263 RussiaSanctions
+    274 PutinWarCriminal
+    280 เจ้าแก้มก้อน
+    282 COVIDisAirborne
+    282 PMQs
+    305 StopPutinNOW
+    319 ableg
+    337 Kyiv
+    340 bcpoli
+    356 Mariupol
+    363 auspol
+    366 BREAKING
+    403 Putin
+    404 Omicron
+    460 Russian
+    536 PutinHitler
+    782 StandWithUkraine
+    894 FollowBackFriday
+    895 FBPE
+   1107 LongCovid
+   1112 Russia
+   1598 COVID19
+   2811 Ukraine
+
+################## QUESTION 6 #######################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=retweeted downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+    104 longcovid
+    104 OhmThitiwat
+    105 Partygate
+    111 China
+    113 UK
+    114 NATO
+    114 UkraineRussiaWar
+    116 Anonymous
+    121 โอห์มไง
+    128 Kharkiv
+    138 ableg
+    146 Covid19
+    169 COVID
+    178 PMQs
+    199 fluke_natouch
+    218 Ukrainian
+    222 BA2
+    228 Putin
+    240 StandWithUkraine
+    274 เจ้าแก้มก้อน
+    287 Mariupol
+    316 Omicron
+    317 Kyiv
+    348 auspol
+    362 BREAKING
+    397 Russian
+    956 LongCovid
+   1029 Russia
+   1096 COVID19
+   2510 Ukraine
+
+################ QUESTION 7 #########################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=replied_to downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+     49 J6TraitorSaysWhat
+     57 MaskUp
+     58 Ontario
+     61 N95
+     62 cdnpoli
+     64 Apartheid
+     71 Canada
+     74 Putin
+     79 Ukraine
+     82 COVIDisAirborne
+     84 ClimateCrisis
+     92 VoteFordOut
+     95 LongCovid
+    100 onpoli
+    106 BoycottATP
+    107 NeverVoteConservative
+    115 Genocide
+    121 COVID19BC
+    127 bced
+    142 Ottawa
+    178 bcpoli
+    191 PutinWarCriminal
+    207 BoycottRussia
+    211 RussiaSanctions
+    216 StopPutinNOW
+    252 COVID19
+    319 StandWithUkraine
+    429 PutinHitler
+    875 FollowBackFriday
+    883 FBPE
+
+############## QUESTION 8 #############################################
+
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=quoted downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+     43 VoteLiberal
+     44 StopPutinNOW
+     46 FreePalestine
+     46 VoteThemAllOut2022
+     47 PutinWarCriminal
+     49 covid19
+     49 LongCovid
+     53 CovidIsNotOver
+     54 bced
+     56 Canada
+     57 Ottawa
+     59 cdnpoli
+     59 COVID19BC
+     60 PutinHitler
+     61 MaskUp
+     64 BDS
+     64 COVID19AB
+     64 Putin
+     72 Ontario
+     76 COVIDisAirborne
+     76 MaskMandate
+     76 Ukraine
+     93 bcpoli
+    100 NeverVoteConservative
+    104 onpoli
+    111 ableg
+    113 Genocide
+    140 VoteFordOut
+    151 StandWithUkraine
+    186 COVID19
+]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ exit
+
+Script done on 2022-09-30 01:04:13-04:00
