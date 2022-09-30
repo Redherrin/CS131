@@ -3,11 +3,15 @@ Script started on 2022-09-30 01:03:28-04:00
 
 ############### QUESTION 0 ######################################
 
-
+On Windows a new line is \r\n. On Linux it is \n. So that means that Linux will get confused by the linefeed character, but Excel doesn't, which is why Excel can display it all in one line.
+To remove the linefeed characters (in Excel) you can use a formula. SUBSTITUTE(text_column, "\n", "") where text_column is the column of the text with new lines I want to remove.
 
 ############### QUESTION 1 ######################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | cut -f 1 | sort | uniq -c | sort -n -k 1 | tail -n 10 
+
+Top 10 Users who replied the most to other users
+ COUNTS USER ID
       9 531618878
      10 1401861298233647106
      10 90107770
@@ -22,6 +26,9 @@ Script started on 2022-09-30 01:03:28-04:00
 ############### QUESTION 2 ######################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | cut -f 2 | sort | uniq -c | sort -n -k 1 | tail -n 10 
+
+Top 10 users who got the most replies from other users
+ COUNTS USER ID
      10 48624704
      10 95091601
      11 1462548977367359490
@@ -36,6 +43,9 @@ Script started on 2022-09-30 01:03:28-04:00
 ############### QUESTION 3 ######################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep -E "retweeted" downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 2 | sort | uniq -c | sort -n -k 1 | tail -n 10
+
+Top 10 users who retweeted the most other tweets.
+ COUNTS USER ID
    1139 1060440219097423872
    1159 29447428
    1216 832019161454817280
@@ -50,6 +60,10 @@ Script started on 2022-09-30 01:03:28-04:00
 ############## QUESTION 5 #######################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ cut -f 4 downloaded_tweets_extend_nolf2_NOBOT.tsv | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+
+
+Top 30 hashtags in general
+ COUNTS HASHTAG
     236 cdnpoli
     239 onpoli
     251 Ukrainian
@@ -84,6 +98,9 @@ Script started on 2022-09-30 01:03:28-04:00
 ################## QUESTION 6 #######################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=retweeted downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+
+Top 30 hashtags that got retweeted the most
+ COUNTS HASHTAG
     104 longcovid
     104 OhmThitiwat
     105 Partygate
@@ -118,6 +135,8 @@ Script started on 2022-09-30 01:03:28-04:00
 ################ QUESTION 7 #########################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=replied_to downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+The top 30 hashtags that got replied the most
+ COUNTS HASHTAG
      49 J6TraitorSaysWhat
      57 MaskUp
      58 Ontario
@@ -152,6 +171,10 @@ Script started on 2022-09-30 01:03:28-04:00
 ############## QUESTION 8 #############################################
 
 ]0;kevin@sjsu:~/A2[kevin@sjsu A2]$ grep type=quoted downloaded_tweets_extend_nolf2_NOBOT.tsv | cut -f 4 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+
+
+Top 30 hashtags that got quoted the most.
+ COUNTS HASHTAG
      43 VoteLiberal
      44 StopPutinNOW
      46 FreePalestine
