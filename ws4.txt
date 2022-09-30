@@ -1,0 +1,52 @@
+Script started on 2022-09-30 01:32:57-04:00
+:[K[K[?1l>[?1049l[23;0;0t]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | less[1P[1@4
+[kevin@sjsu ~]$ cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | less
+:[K[K[?1l>[?1049l[23;0;0t]0;kevin@sjsu:~[kevin@sjsu ~]$ mkdir CUSTOMERS
+]0;kevin@sjsu:~[kevin@sjsu ~]$ mkdir PRODUCTS
+]0;kevin@sjsu:~[kevin@sjsu ~]$ grep [K[K[K[K[Kmkdir PRODUCTSCUSTOMERScut -f 4,9 amazon_reviews_us_Books_v1_02.tsv | less[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[Kgrep 37773675 | [K[K> 37773675.txt[C[Cc37773675.txtu37773675.txts37773675.txtt37773675.txto37773675.txtm37773675.txte37773675.txtr37773675.txt
+]0;kevin@sjsu:~[kevin@sjsu ~]$ less customer37773675.txt [K
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cp CUSTOMERS/customer37773675.txt customer37773675.txt[C[1P[1P[1@m[1@v[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCcustomer37773675.txtUcustomer37773675.txtScustomer37773675.txtTcustomer37773675.txtOcustomer37773675.txtMcustomer37773675.txtEcustomer37773675.txtRcustomer37773675.txtScustomer37773675.txt/customer37773675.txt
+
+Script done on 2022-09-30 01:39:26-04:00
+Script started on 2022-09-30 01:51:51-04:00
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | grep 51254332 > CUSTOMERS/customer51254332.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt50266356.txt[1P[1P[1P[1P[1P[1P[1P[1P[8@50266356
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | grep 50266356 > CUSTOMERS/customer50266356.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txtP.txtR.txtO.txtD.txtU.txtC.txtT.txtS.txt/.txtp.txtr.txto.txtd.txtu.txtc.txtt.txt04514115.txt52.txt[C[1P[1P[1P[1P[1P[1P[1P[1P[8@04514115[2@52[C[1P[1@5[1P[1@4
+[kevin@sjsu ~]$ cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | grep 51254332 > CUSTOMERS/customer51254332.txt
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 4,9 amazon_reviews_us_Books_v1_02.tsv | grep 0451411552 > PRODUCTS/product0451411552.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt15962701.txt87.txt[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[8@15962701[2@87
+]0;kevin@sjsu:~[kevin@sjsu ~]$ cut -f 4,9 amazon_reviews_us_Books_v1_02.tsv | grep 1596270187 > PRODUCTS/product1596270187.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt[1P.txt02620248.txt29.txt[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[8@02620248[2@29
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $1} END {printf sum/NR "\n"}' in2.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+
+Script done on 2022-09-30 01:56:30-04:00
+Script started on 2022-09-30 02:00:25-04:00
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $1} END {printf sum/NR "\n"}'[1P[1@2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C CUSTOMERS/customer37773675.txt
+23.4286
+]0;kevin@sjsu:~[kevin@sjsu ~]$ CUSTOMERS/customer50266356.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kawk '{sum += $2} END {printf sum/NR "\n"}' CUSTOMERS/customer37773675.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KCUSTOMERS/customer50266356.txt
+3.14286
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $2} END {printf sum/NR "\n"}' CUSTOMERS/customer51254332.txt.txt[K[K[K[K
+5.2
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $2} END {printf sum/NR "\n"}' CUSTOMERS/customer51254332.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KPRODUCTS/product0451411552.txt
+4
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $2} END {printf sum/NR "\n"}' PRODUCTS/product0451411552.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KPRODUCTS/product1596270187.txt
+29
+]0;kevin@sjsu:~[kevin@sjsu ~]$ awk '{sum += $2} END {printf sum/NR "\n"}' PRODUCTS/product1596270187.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KPRODUCTS/product0262024829.txt
+27.9091
+]0;kevin@sjsu:~[kevin@sjsu ~]$ exit
+
+Script done on 2022-09-30 02:03:03-04:00
+
+#################################################################
+
+FILENAME             AVG HELPFULNESS
+customer37773675     23.4286
+customer50266356     3.14286
+customer51254332     5.2
+product0451411552    4
+product1596270187    29
+product0262024829    27.9091
+
+The helpfulness value would definitely vary a lot between different customers. Some people write a non-descript sentence about the product that won't get many votes. Others may write long and detailed reviews that will get a lot of votes. Others might write funny captions that will also get a decent amount of votes. Some people might also consistenly write long detailed reviews, while others may only do it for products they either really love or hate. I think it would be unlikely for customers' helpfulness scores to be similar.
+
+I also think the helpfulness scores of products would be wildly different from each other. Exceptionally bad or good products will probably get a lot more helpfulness votes from people complaining/praising the products. More popular products would simply have more votes just from having more customers compared to less known products.
+
+In the examples I chose, you can even see how they range from ~4 to somewhere in the 20s on average, for both customers and product scores. Customers seem to overall have less helpfulness votes than products, which does make sense since a customer would have to make many helpful reviews to catch up. 
+

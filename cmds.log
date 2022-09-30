@@ -1,0 +1,46 @@
+ 1029  less in1.txt
+ 1030  awk '{sum += $1} END {sum/NR}'
+ 1031  awk '{sum += $1} END {sum/NR}' in1.txt
+ 1032  awk '{sum += $1} END {printf sum/NR}' in1.txt
+ 1033  awk '{sum += $1} END {printf sum/NR "\n"}' in1.txt
+ 1034  awk '{sum += $1} END {printf sum/NR "\n"}' in2.txt
+ 1035  less in2.txt
+ 1036  ls
+ 1037  cd ..
+ 1038  ls
+ 1039  less amazon_reviews_us_Books_v1_02.tsv 
+ 1040  cut -f 2,9 amazon_reviews_us_Books_v1_02.tsv | less
+ 1041  script ws4.txt
+ 1042  vi ws4.txt
+ 1043  less ws4.txt 
+ 1044  vi ws4.txt
+ 1045  less ws4.txt
+ 1046  cat ws4.txt
+ 1047  vi ws4.txt
+ 1048  cat ws4.txt
+ 1049  vi ws4.txt
+ 1050  cat ws4.txt 
+ 1051  vi ws4.txt
+ 1052  cat ws4.txt
+ 1053  vi ws4.txt
+ 1054  cat ws4.txt
+ 1055  vi ws4.txt
+ 1056  cat ws4.txt
+ 1057  script -a ws4.txt
+ 1058  vi ws4.txt
+ 1059  cat ws4.txt 
+ 1060  vi ws4.txt
+ 1061  cat ws4.txt 
+ 1062  less CUSTOMERS/customer50266356.txt
+ 1063  awk '{sum += $2} END {printf sum/NR "\n"}' CUSTOMERS/customer50266356.txt
+ 1064  awk '{sum += $2} END {printf sum/NR "\n"}' PRODUCTS/product0451411552.txt
+ 1065  less PRODUCTS/product0451411552.txt
+ 1066  script -a ws4.txt
+ 1067  vi ws4.txt
+ 1068  cat ws4.txt 
+ 1069  vi ws4.txt
+ 1070  cat ws4.txt 
+ 1071  vi ws4.txt
+ 1072  history > cmds.log
+
+**I'm not sure why not all of my commands are showing up in here. I double checked and I didn't delete them, they should be near 1063 since I did them all at once.
