@@ -1,0 +1,26 @@
+-------------- QUESTION 1 ------------------------------------------
+
+$ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | awk -F '\t' '{ t=$1; $1=$2; $2=t; print $0;}' | sort -n -k 1 > a3_q1_sort_graph.csv
+
+-------------- QUESTION 2 ------------------------------------------
+
+$ cut -d " " -f 1 a3_q1_sort_graph.csv | uniq -c | awk '{ if($1 > 2) print $2; }' > filtered_cluster.txt
+
+Using this with grep -f would match the id with the second column, which we don't want because that would often correspond to people who only got one reply. So we use awk to add regex anchors to make sure it only matches the first column.
+
+$ awk ' { print "^" $1 "\\b"; } ' filtered_cluster.txt > filtered_cluster_regex.txt
+$ grep -f filtered_cluster_regex.txt a3_q1_sort_graph.csv | cut -d " " -f 1 | uniq -c | sort -b -n -k 1 | awk '{ print $1 "," $2; }' > a3_q2_sort_clusters_data.csv
+
+-------------- QUESTION 3 ------------------------------------------
+
+$ bin(x,width)=width*floor(x/width)+width/2.0
+$ set boxwidth 1
+$ plot 'a3_q2_sort_clusters_data.csv' using (bin($1, 1)):(1.0) smooth freq with boxes
+
+The screenshot file is 'graph_UserWithXReplies_vs_Frequency.png'.
+
+-------------- QUESTION 4 ------------------------------------------
+
+
+
+
