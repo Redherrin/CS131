@@ -1,9 +1,8 @@
--------------- QUESTION 1 ------------------------------------------
+################# QUESTION 1 ##############################################
 
 $ cut -f 2,6 downloaded_tweets_extend_original_nolf2_NOBOT.tsv | grep -E "[0-9]+\s[0-9]+" | awk -F '\t' '{ t=$1; $1=$2; $2=t; print $0;}' | sort -n -k 1 > a3_q1_sort_graph.csv
 
--------------- QUESTION 2 ------------------------------------------
-
+################# QUESTION 2 ##############################################
 $ cut -d " " -f 1 a3_q1_sort_graph.csv | uniq -c | awk '{ if($1 > 2) print $2; }' > filtered_cluster.txt
 
 Using this with grep -f would match the id with the second column, which we don't want because that would often correspond to people who only got one reply. So we use awk to add regex anchors to make sure it only matches the first column.
@@ -11,16 +10,138 @@ Using this with grep -f would match the id with the second column, which we don'
 $ awk ' { print "^" $1 "\\b"; } ' filtered_cluster.txt > filtered_cluster_regex.txt
 $ grep -f filtered_cluster_regex.txt a3_q1_sort_graph.csv | cut -d " " -f 1 | uniq -c | sort -b -n -k 1 | awk '{ print $1 "," $2; }' > a3_q2_sort_clusters_data.csv
 
--------------- QUESTION 3 ------------------------------------------
-
+################# QUESTION 3 ##############################################
 $ bin(x,width)=width*floor(x/width)+width/2.0
 $ set boxwidth 1
 $ plot 'a3_q2_sort_clusters_data.csv' using (bin($1, 1)):(1.0) smooth freq with boxes
 
 The screenshot file is 'graph_UserWithXReplies_vs_Frequency.png'.
 
--------------- QUESTION 4 ------------------------------------------
+################# QUESTION 4 ##############################################
+
+The original command used in A2 Q5 to find the top 30 hashtags (in general) was:
+$ cut -f 4 downloaded_tweets_extend_nolf2_NOBOT.tsv | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+    236 cdnpoli
+    239 onpoli
+    251 Ukrainian
+    252 VoteFordOut
+    260 BoycottRussia
+    262 Ottawa
+    263 Genocide
+    263 RussiaSanctions
+    274 PutinWarCriminal
+    280 เจ้าแก้มก้อน
+    282 COVIDisAirborne
+    282 PMQs
+    305 StopPutinNOW
+    319 ableg
+    337 Kyiv
+    340 bcpoli
+    356 Mariupol
+    363 auspol
+    366 BREAKING
+    403 Putin
+    404 Omicron
+    460 Russian
+    536 PutinHitler
+    782 StandWithUkraine
+    894 FollowBackFriday
+    895 FBPE
+   1107 LongCovid
+   1112 Russia
+   1598 COVID19
+   2811 Ukraine
+
+To get the 30 most frequent hashtags in these clusters:
+$ cut -f 1 --complement downloaded_tweets_extend_nolf2_NOBOT.tsv | grep -f filtered_cluster_regex.txt | cut -f 3 | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30 | less
+
+     45 SpeakOutAgainstWW3
+     46 Covid
+     47 NFLPlayoffs
+     48 NATO
+     48 NFLDraft
+     49 Russian
+     51 VITT
+     52 Covid19
+     53 Putin
+     57 DailyCovidUpdate
+     59 BorisJohnson
+     60 TheBachelor
+     61 VaccineSideEffects
+     63 TheView
+     63 ZeroCovid
+     66 COVID
+     66 longcovid
+     72 btc
+     78 BREAKING
+     88 Partygate
+    100 auspol
+    112 NoWarWithRussia
+    114 BA2
+    123 Omicron
+    135 NoToWar
+    140 PMQs
+    164 Russia
+    369 COVID19
+    388 Ukraine
+    551 LongCovid
+
+Putting the hashtags from A2 in fill1, and these new hashtags into fill3( add this to the end of the above commands: |  awk '{ print $2 }' | sort > fill ), you can run a diff:
+
+$ diff -u fill1 fill2
+--- fill1       2022-10-10 00:18:21.647093800 -0700
++++ fill2       2022-10-10 00:18:01.463476200 -0700
+@@ -1,30 +1,30 @@
++BA2
+ BREAKING
+-BoycottRussia
++BorisJohnson
++COVID
+ COVID19
+-COVIDisAirborne
+-FBPE
+-FollowBackFriday
+-Genocide
+-Kyiv
++Covid
++Covid19
++DailyCovidUpdate
+ LongCovid
+-Mariupol
++NATO
++NFLDraft
++NFLPlayoffs
++NoToWar
++NoWarWithRussia
+ Omicron
+-Ottawa
+ PMQs
++Partygate
+ Putin
+-PutinHitler
+-PutinWarCriminal
+ Russia
+-RussiaSanctions
+ Russian
+-StandWithUkraine
+-StopPutinNOW
++SpeakOutAgainstWW3
++TheBachelor
++TheView
+ Ukraine
+-Ukrainian
+-VoteFordOut
+-ableg
++VITT
++VaccineSideEffects
++ZeroCovid
+ auspol
+-bcpoli
+-cdnpoli
+-onpoli
+-เจ้าแก้มก้อน
++btc
++longcovid
 
 
-
-
+The new A3 hashtags include ones about tv shows, namely TheBachelor and TheView. They also include sports hashtags like NFLDraft and NFLPlayoffs. There are also a bit more covid related hashtags, although the old A2 hashtags had a few. The old general A2 hashtags generally included more hashtags about the war/Putin/Ukraine. 
