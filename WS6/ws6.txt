@@ -1,0 +1,39 @@
+Script started on 2022-10-19 02:29:16-04:00
+
+
+############ STEP 1 ############################################
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ DATETIME=`date +%Y-%m-%d_%H.%M`
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ echo $DATETIME
+2022-10-19_02.40
+
+############ STEP 2 ############################################
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ mkdir PRODUCTS
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ mkdir PRODUCTScp -R ../../PRODUCTS/product0262024829.txt PRODUCTS/0262024829.$DATETIME.txt
+
+############ STEP 3 #############################################
+[3m(END)[23m[K[K [KESCESC[K[[[K55[K~~[K[K[3m(END)[23m[K[K [KESCESC[K[[[K66[K~~[K[K[3m(END)[23m[K[K [KESCESC[K[[[K55[K~~[K[K[3m(END)[23m[K[K[?1l>[?1049lkkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ echo "0262024829      5"[1P"3"5"[C >> PRODUCTS/0262024829.2022-10-19_02.40.txt 
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ echo "0262024829      35" >> PRODUCTS/0262024829.2022-10-19_02.40.txt [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[24Pless[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+########### STEP 4 ##############################################
+The files so far had the names as product(productID).txt but I changed them to just (productID).txt but I didn't include the mv commands
+
+[kevin@sjsu PRODUCTS]$ ln -s 0262024829.2022-10-19_02.40.txt 0262024829.LATEST.txt
+
+########### STEO 5 ##############################################
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ vi avgrating.script
+Contents of this file:
+----------------------------------------
+#!/bin/bash
+awk '{sum += $2} END {printf sum/NR "\n"}' /home/kevin/CS131/WS6/PRODUCTS/0262024829.LATEST.txt > /home/kevin/CS131/WS6/PRODUCTS/0262024829.AVGRATING.txt
+----------------------------------------
+
+[kevin@sjsu WS6]$ vi avgrating.cron
+Contents of this file:
+----------------------------------------
+* * * * * /home/kevin/CS131/WS6/avgrating.script
+----------------------------------------
+
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ crontab avgrating.cron
+kkevin@sjsu:~/CS131/WS6\[kevin@sjsu WS6]$ exit
+
+Script done on 2022-10-19 03:44:52-04:00

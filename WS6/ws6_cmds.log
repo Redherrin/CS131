@@ -1,0 +1,25 @@
+ 1321  cd
+ 1322  ls
+ 1323  cd CS131
+ 1324  git status
+ 1325  git -b checkout WS6
+ 1326  git checkout master
+ 1327  git checkout -b WS6
+ 1328  mkdir WS6
+ 1329  cd WS6
+ 1330  script ws6.txt
+ 1331  catcat avgrating.script
+ 1332  cat avgrating.script
+ 1333  vi ws6.txt
+ 1334  cat ws6.txt
+ 1335  less ws6.txt
+ 1336  vi ws6.txt
+ 1337  cat ws6.txt
+ 1338  vi ws6.txt
+ 1339* 
+ 1340  vi ws6.txt
+ 1341  cat ws6.txt
+ 1342  vi ws6.txt
+ 1343  cat ws6.txt 
+ 1344  vi ws6.txt 
+ 1345  history > ws6_cmds.log
