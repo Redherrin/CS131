@@ -1,0 +1,164 @@
+############ QUESTION 0 #############################################################
+
+First, create a list of all the tweet ids of tweets that were rt'd. Put into rt_tweet_ids
+$ cut -f 5 ../downloaded_tweets_extend_nolf2_NOBOT.tsv | grep type=retweeted | cut -d "=" -f 2 | cut -d " " -f 1 > rt_tweet_ids
+
+Then, we can grep -F this with the original.tsv to find the top 10 users who got rt'd the most.
+$ grep -F -f rt_tweet_ids ../downloaded_tweets_extend_original_nolf2_NOBOT.tsv | cut -f 2 | sort | uniq -c | sort | tail -n 10
+    139 1290232189615894531
+    158 813314931147816960
+    159 1229752606714728454
+    174 42836999
+    249 1219232377605644289
+    254 1231514832479948802
+    273 163018653
+    274 1495480590572961792
+    298 18831926
+    375 1891490382
+
+############ QUESTION 1 #############################################################
+
+First, create a file in the format of FOLLOWER,tweetid where FOLLOWER is the person who rt'd the tweet with tweetid.
+$ cut -f 2,5 ../downloaded_tweets_extend_nolf2_NOBOT.tsv | grep type=retweeted | sed -e s/'\t\[<ReferencedTweet id='/,/ -e s/'\stype=retweeted\]'/''/ | sort -k 1 -t ',' > list_follower_tweetid
+
+Then we create another file in the format of tweetid,LEADER where LEADER is the person whose tweet with tweetid was rt'd.
+$ cut --output-delimiter=',' -f 1,2 ../downloaded_tweets_extend_original_nolf2_NOBOT.tsv > list_tweetid_leader
+
+We can use awk to combine these files on tweetid, so we end up with a file that's in the format of FOLLOWER,LEADER
+This file is also sorted for convenience.
+$ awk -F',' 'FNR==NR{ a[$2] = $1; next } { if (a[$1]) printf "%s,%s\n",a[$1],$2; }' list_follower_tweetid list_tweetid_leader | sort -k 1 -t ',' > rt_follower_leader.csv
+
+
+############ QUESTION 2 #############################################################
+
+Produce a file in the format of num,LEADER where num is the size of the cluster and LEADER is the person who was rt'd.
+These clusters are size 3 and up only.
+$ cut -d "," -f 2 rt_follower_leader.csv | sort | uniq -c | sort | awk '{ if ($1 > 2) printf "%s,%s\n",$1,$2;}' > rt_leader_clusters.csv
+
+############ QUESTION 3 #############################################################
+
+gnuplot> bin(x,width)=width*floor(x/width)+width/2.0
+gnuplot> set boxwidth 1
+gnuplot> set xrange[0:150]
+gnuplot> set xtics 0,2,80
+gnuplot> plot 'rt_leader_clusters.csv' using (bin($1, 1)):(1.0) smooth freq with boxes
+
+The screenshot is called 'rt_leader_clusters.png'
+There were a several data sets past cluster sizes of 80 (the max was 375 amazingly), but I chose to omit those because it made the graph really small and hard to read.
+
+############ QUESTION 4 #############################################################
+
+
+$ awk -F',' 'FNR==NR{ a[$2] = $1; next } { if (a[$1]) printf "%s,%s,%s\n",a[$1],$2,$1; }' list_follower_tweetid list_tweetid_leader | sort -k 1 -t ',' > rt_follower_leader_tweetid.csv
+
+$ awk -F',' 'FNR==NR{ a[$2] = $1 "," $3; next } { if (a[$2]) print a[$2]; }' rt_follower_leader_tweetid.csv rt_leader_clusters.csv | sort -k 1 -t ',' > list_follower_tweetid_clusters.csv
+
+$ cut --output-delimiter="," -f 2,4,5 ../downloaded_tweets_extend_nolf2_NOBOT.tsv 
+
+$ cut --output-delimiter="       " -f 2,4,5 ../downloaded_tweets_extend_nolf2_NOBOT.tsv | grep -E ".+,.+,.+type=retweeted" | sed -e s/'\[<ReferencedTweet id='// -e s/' type=.+'// | awk '{printf "%s,%s\t%s\n", $1, $3, $2;}' | grep -F -f list_follower_tweetid_clusters.csv | less
+
+
+$ cut -d "," -f 2 rt_follower_leader.csv | sort | uniq -c | sort | awk '{ if ($1 > 2) printf "%s,%s\n",$1,$2;}' > rt_follower_tweetid_hashtag_leader_clusters.csv
+
+follower, hashtags, tweetid
+tweetid, leader
+follower, hashtags, leader
+uniq on leader
+
+
+This is similar to what we did in QUESTION 1. Instead of joining a FOLLOWER,tweetid with tweetid,LEADER we instead join a HASHTAGS,tweetid with tweetid,LEADER. We end up with a file with HASHTAG,LEADER.
+
+$ cut --output-delimiter="      " -f 4,5 ../downloaded_tweets_extend_nolf2_NOBOT.tsv | grep -E ".       .+type=retweeted" | sed -e s/'\[<ReferencedTweet id='/''/ -e s/'\stype=retweeted\]'/''/ > list_hashtag_tweetid
+
+$ cut --output-delimiter='      ' -f 1,2 ../downloaded_tweets_extend_original_nolf2_NOBOT.tsv > list_tweetid_leader_tabs
+
+$ awk -F'       ' 'FNR==NR{ a[$2] = $1; next } { if (a[$1]) printf "%s\t%s\n",a[$1],$2; }' list_hashtag_tweetid list_tweetid_leader_tabs > rt_hashtag_leader.csv
+
+Then we can create csv containing with only the leaders with clusters size 3 and up. We can take a shortcut and just get the leaders from rt_leader_clusters.csv because we know them to be cluster sizes 3 and up already.
+
+$ cut -d',' -f 2 rt_leader_clusters.csv > rt_leader_clusters_cut.csv
+
+Finally we can grep the HASHTAG,LEADER file with the cut leader file we just made. This will give us a list of hashtags used in cluster sizes 3 and up.
+
+$ grep -F -f rt_leader_clusters_cut.csv rt_hashtag_leader.csv | cut -f 1 | sed -e s/\"//g -e s/,/"\n"/g | sort | uniq -c | sort -k 1 | tail -n 30
+     70 TomorrowsPapersToday
+     71 cdnpoli
+     72 UkraineRussiaWar
+     75 Covid
+     77 Belarus
+     84 Kharkiv
+     85 China
+     85 OhmThitiwat
+     89 COVID
+     91 PMQs
+     91 ableg
+     95 ENGLAND
+     95 UK
+    103 โอห์มไง
+    109 Covid19
+    128 Putin
+    141 Ukrainian
+    144 Omicron
+    147 StandWithUkraine
+    148 Mariupol
+    157 fluke_natouch
+    192 Kyiv
+    209 BREAKING
+    222 เจ้าแก้มก้อน
+    231 auspol
+    270 Russian
+    511 LongCovid
+    584 COVID19
+    709 Russia
+   1616 Ukraine
+
+(Copied from A3): The original command used in A2 Q5 to find the top 30 hashtags (in general) was:
+$ cut -f 4 downloaded_tweets_extend_nolf2_NOBOT.tsv | grep . | tr -d "\"" | tr , "\n" | sort -d | uniq -c | sort -n -k 1 | tail -n 30
+    236 cdnpoli
+    239 onpoli
+    251 Ukrainian
+    252 VoteFordOut
+    260 BoycottRussia
+    262 Ottawa
+    263 Genocide
+    263 RussiaSanctions
+    274 PutinWarCriminal
+    280 เจ้าแก้มก้อน
+    282 COVIDisAirborne
+    282 PMQs
+    305 StopPutinNOW
+    319 ableg
+    337 Kyiv
+    340 bcpoli
+    356 Mariupol
+    363 auspol
+    366 BREAKING
+    403 Putin
+    404 Omicron
+    460 Russian
+    536 PutinHitler
+    782 StandWithUkraine
+    894 FollowBackFriday
+    895 FBPE
+   1107 LongCovid
+   1112 Russia
+   1598 COVID19
+   2811 Ukraine
+
+The hashtags from the rt's seem to include OhmThitiwat and fluke_natouch (actors it seems like), China, England, UK, and other countries. There are western government related hashtags like cdnpoli (Canadian politics/news?), onpoli (Ontario politics/news), and PMQ ([UK] Prime Minster's Questions.) While the hashtags from the rt's include a lot of the global hashtags like Covid and Russian War related hashtags, there are also more hashtags related to western governments and other countries.
+
+############ QUESTION 5 #############################################################
+
+I am going to be using user 1243560408025198593 as the leader of this question.
+
+This is the data for the retweet graph and picture.
+$ grep ",1243560408025198593" rt_follower_leader.csv > graph_follower_leader.csv 
+The picture is named 'graph_followers_leaders1243560408025198593.png'. (It's the one with a lot of followers pointing at the leader.)
+
+This is the data for the reply graph and picture.
+$ grep "1243560408025198593" ../a3_q1_sort_graph.csv > graph_reply_follower_leader.csv
+The picture is named 'graph_reply_followers_leaders1243560408025198593.png' (It's the one with few followers pointing at the leader.)
+
+############ QUESTION 6 #############################################################
+
+The graphs are very different from each other. The reply graph only has two followers, compared to the 15 or so followers on the rt graph. Not only that, but some of the followers on the rt graph rt'd the leader many times, creating a very strong relationship. The followers in the reply graph only replied once in comparison. It seems like a bigger variety of followers will retweet the leader, and among those followers, some will retweet the leader often. This makes sense because rt'ing is far easier than replying to someone's post, or it's more convenient/it's unecessary to write a reply.
