@@ -1,0 +1,32 @@
+First create the text tiles.
+$ head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'       ' '{if ($12 == "N") print}' > "unverified_awk.txt"
+$ head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'       ' '{if ($12 == "Y") print}' > "verified_awk.txt"
+
+Then sed to cut out a few filler words and the html tags
+$ sed -e s/"\b\(and\|or\|if\|in\|the\|but\|this\|that\|there\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g unverified_awk.txt > unverified_awk_filtered.txt
+$ sed -e s/"\b\(and\|or\|if\|in\|the\|but\|this\|that\|there\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g verified_awk.txt > verified_awk_filtered.txt
+
+Then we can get each word count and print the last 10 sorted.
+$ cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w " " words[w]}' | sort -n -k 2 | tail -n 10
+not     25
+are     26
+with    29
+book    31
+for     35
+I       38
+a       51
+is      56
+to      82
+of      88
+
+$ cut -f 14 unverified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "       " words[w]}' | sort -n -k 2 | tail -n 10
+with    238
+as      250
+it      274
+for     280
+book    342
+I       474
+is      566
+a       756
+to      872
+of      1060

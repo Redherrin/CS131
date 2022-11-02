@@ -1,0 +1,79 @@
+  502  echo "Start WS8"
+  504  ls
+  505  head -n 1 amazon_reviews_us_Books_v1_02.tsv 
+  506  head -n 1 amazon_reviews_us_Books_v1_02.tsv 
+  507  head -n 200 amazon_reviews_us_Books_v1_02.tsv | less
+  508  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk '{print $12}'
+  509  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk '{print $12}' | less
+  510  head -n 200 amazon_reviews_us_Books_v1_02.tsv | less
+  511  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{print $12}' | less
+  512  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == Y) print $12}' | less
+  513  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print $12}' | less
+  514  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print}' | less
+  515  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "N") print}' | less
+  516  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "N") print}' > "unverified_awk.txt"
+  517  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print}' > "verified_awk.txt"
+  518  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print $14}' > "verified_awk.txt"
+  519  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print}' > "verified_awk.txt"
+  520  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{if ($12 == "Y") print $14}' | less
+  521  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for (w in $14) print}' | less
+  522  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for (w in $14) print w}' | less
+  523  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for (w in $14) {print w}}' | less
+  524  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for (w in $14) {print w;}}' | less
+  525  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for w in $14 print}' | less
+  526  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{for w in $14 print w}' | less
+  527  head -n 200 amazon_reviews_us_Books_v1_02.tsv | awk -F'	' '{print $14}' | less
+  528  sed -e  s/"\b\(and\|or\|if\|in\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g~ verified_awk.txt | less
+  529  sed -e  s/"\b\(and\|or\|if\|in\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g~ verified_awk.txt | less
+  530  sed -e s/"\b\(and\|or\|if\|in\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g verified_awk.txt | less
+  531  sed -e s/"\b\(and\|or\|if\|in\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g verified_awk.txt > verified_awk_filtered.txt
+  532  sed -e s/"\b\(and\|or\|if\|in\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g unverified_awk.txt > unverified_awk_filtered.txt
+  533  awk 'print $14' verified_awk_filtered.txt | less
+  534  awk -F'	' 'print $14' verified_awk_filtered.txt | less
+  535  awk -F'	' '{print $14}' verified_awk_filtered.txt | less
+  536  awk -F'	' '{for i in $14}' verified_awk_filtered.txt | less
+  537  awk -F'	' '{for i in $14 {print i}}' verified_awk_filtered.txt | less
+  538  awk -F'	' '{print $14[0]}' verified_awk_filtered.txt | less
+  539  awk -F'	' '{print $14}' verified_awk_filtered.txt | less
+  540  awk -F'	' '{for(i=0; i <=NF; i++) print i}' verified_awk_filtered.txt | less
+  541  awk -F'	' '{for(i=0; i <=NF; i++) print $i}' verified_awk_filtered.txt | less
+  542  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=0; i <=NF; i++) print $i}' | less
+  543  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) print $i}' | less
+  544  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) print $i}' | less
+  545  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] += 1} END{for (w in words) print w }' | less
+  546  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] += 1} END{for (w in words) print }' | less
+  547  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print }' | less
+  548  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) {words[$i]++; print words[$1}}' | less
+  549  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) {words[$i]++; print words[$i}}' | less
+  550  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) {words[$i]++; print words[$i]}}' | less
+  551  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk 'BEGIN{words[]}{for(i=1; i <=NF; i++) {words[$i]++; print words[$i]}}' | less
+  552  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) {words[$i] = words[$1] + 1; print words[$i]}}' | less
+  553  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) {words[$i] = words[$1] + 1;}' | less
+  554  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$1] + 1} END {for (w in words) print w}' | less
+  555  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$1] + 1} END {for (int (i in words) print a) print w}' | less
+  556  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$1] + 1} END {for (int (i in words) print a}' | less
+  557  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$1] + 1} END {for (i in words) print a}' | less
+  558  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$1] + 1} END {for (w in words) print words[w]}' | less
+  559  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[i1] + 1} END {for (w in words) print words[w]}' | less
+  560  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[i] + 1} END {for (w in words) print words[w]}' | less
+  561  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {for (w in words) print words[w]}' | less
+  562  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {for (w in words) print w}' | less
+  563  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {for (i in words) print i}' | less
+  564  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {for (i in words) {print i}}' | less
+  565  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {if (words[she]) print}' | less
+  566  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1} END {if (words[she]) print a}' | less
+  567  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = words[$i] + 1}' | less
+  568  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i<=NF; i++) words[$i] = 1}' | less
+  569  cut -f 14 amazon_reviews_us_Books_v1_02.tsv | awk '{for(i=1; i <=NF; i++) words[$i] = 'a'}' | less
+  570  head -n 200 amazon_reviews_us_Books_v1_02.tsv | cut -f 14 | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w ":" words[w]}' | less
+  571  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w ":" words[w]}' | less
+  572  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | less
+  573  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -k 2 | less
+  574  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -n -k 2 | less
+  575  sed -e s/"\b\(and\|or\|if\|in\|the\|but\|this\|that\|there\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g unverified_awk.txt > unverified_awk_filtered.txt
+  576  sed -e s/"\b\(and\|or\|if\|in\|the\|but\|this\|that\|there\)\b\|,\|\.\|;"//ig -e s/"<\([a-zA-Z0-9 ]\|\/\)*>"//g verified_awk.txt > verified_awk_filtered.txt
+  577  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -n -k 2 | less
+  578  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -n -k 2 | tail 10
+  579  cut -f 14 verified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -n -k 2 | tail -n 10
+  580  cut -f 14 unverified_awk_filtered.txt | awk '{for(i=1; i <=NF; i++) words[$i]++} END{for (w in words) print w "	" words[w]}' | sort -n -k 2 | tail -n 10
+  581  history > ws8_cmds.log
