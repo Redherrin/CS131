@@ -1,0 +1,80 @@
+  663  vi randomsample.sh
+  664  chmod u+rx randomsample.sh 
+  665  sh randomsample.sh a b
+  666  vi randomsample.sh
+  667  sh randomsample.sh a b
+  668  vi randomsample.sh
+  669  sh randomsample.sh a b
+  670  vi randomsample.sh
+  671  sh randomsample.sh a b
+  672  echo `wc randomsample.sh `
+  673  echo `wc -l randomsample.sh `
+  674  sh randomsample.sh a randomsample.sh 
+  675  echo `wc randomsample.sh | cut -f 1`
+  676  echo `wc -l randomsample.sh | cut -f 1`
+  677* echo `wc -l randomsample.sh | cut -d ' ' -f 1`[A
+  678* sh randomsample.sh 30 [A
+  679  vi randomsample.sh 
+  680  sh randomsample.sh 30 amazon_reviews_us_Books_v1_02.tsv 
+  681  sh randomsample.sh 30 randomsample.sh 
+  682  echo `2 * $RANDOM`
+  683  echo `2*$RANDOM`
+  684  echo $`2*$RANDOM`
+  685  echo `(2*$RANDOM)`
+  686  echo `$(2*$RANDOM)`
+  687  echo $RANDOM
+  688  echo $(($RANDOM))
+  689  echo $(2+($RANDOM))
+  690  echo ($RANDOM)
+  691  echo $($RANDOM)
+  692  echo $(($RANDOM))
+  693  echo $(($RANDOM))+2
+  694  echo `$(($RANDOM))+2`
+  695  echo [$(($RANDOM))+2]
+  696  echo `expr $RANDOM + 1`
+  697  echo (($RANDOM + 1))
+  698  echo $(($RANDOM + 1))
+  699  echo $(($RANDOM % 99 + 1))
+  700  echo $(($RANDOM % 99 + 1))
+  701  echo $((($RANDOM % 99 + 1)/100))
+  702* echo $((($RANDOM % 99 + 1)/100))
+  703  echo $((($RANDOM % 99 + 1)/100))
+  704  echo $((($RANDOM % 99 + 1)/100))
+  705  echo $((8 * 20 / 100))
+  706  echo $((8 * 20 / 100))
+  707  echo $((8 * 20 / 100))
+  708  vi randomsample.sh 
+  709  sh randomsample.sh 50 randomsample.sh 
+  710  vi randomsample.sh 
+  711  sh randomsample.sh 50 randomsample.sh 
+  712  vi randomsample.sh 
+  713  sh randomsample.sh 50 randomsample.sh 
+  714  vi randomsample.sh 
+  715  sh randomsample.sh 50 randomsample.sh 
+  716  shuf -n 2 randomsample.sh 
+  717  shuf -n ((1+2)) randomsample.sh 
+  718  shuf -n $((1+2)) randomsample.sh 
+  719  shuf -n $((1*20/100)) randomsample.sh 
+  720  shuf -n $((1*20/100)) randomsample.sh 
+  721  shuf -n $((20*20/100)) randomsample.sh 
+  722  vi randomsample.sh 
+  723  sh randomsample.sh 50 randomsample.sh 
+  724  sh randomsample.sh 50 randomsample.sh 
+  725  sh randomsample.sh 30 amazon_reviews_us_Books_v1_02.tsv 
+  726  vi randomsample.sh 
+  727  sh randomsample.sh 30
+  728  vi randomsample.sh 
+  729  sh randomsample.sh 30
+  730  vi randomsample.sh 
+  731  sh randomsample.sh 30
+  732  vi randomsample.sh 
+  733  vi randomsample.sh 
+  734  sh randomsample.sh 30
+  735  vi randomsample.sh 
+  736  sh randomsample.sh 30
+  737  sh randomsample.sh 30 a 23
+  738  sh randomsample.sh a
+  739  vi randomsample.sh 
+  740  sh randomsample.sh a
+  741  sh randomsample.sh 30 randomsample.sh 
+  742  history > ws9_cmds.log

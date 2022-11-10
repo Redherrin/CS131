@@ -1,0 +1,23 @@
+$ vi randomsample.sh
+
+Contents of randomsample.sh
+----------------------------------------------
+#!/bin/bash
+
+# Randomly sample a random $1% of lines from the file $2
+# Sampling means to print to stdout
+
+if [[ $# -ne 2 ]] ; then
+        exit 1
+fi
+wc=`wc -l $2 | cut -d ' ' -f 1`
+shuf -n $(($wc*$1/100)) $2
+-----------------------------------------------
+
+$ chmod u+rx randomsample.sh
+$ sh randomsample.sh 30 amazon_reviews_us_Books_v1_02.tsv
+(Prints a whole lot of stuff)
+
+
+(This prints nothing because it's missing a parameter)
+$ sh randomsample.sh 30
