@@ -1,0 +1,177 @@
+-------------------------------------------------------------
+1)
+
+$ cut -f 6 combined_NOBOT.tsv | grep . | sort | uniq -c | sort -n -k 1 | awk '{if ($1 >= 3) print $2;}' > infl_replies
+
+$ wc -l infl_replies
+515 infl_replies
+
+There are 515 such influencers.
+-------------------------------------------------------------
+
+2)
+
+To answer questions 2, 4, 5 easily I will just get all of the rows that are replies to the influencers.
+$ sed s/./.*.*.*.*.*&/ infl_replies | less
+$ sed "s/./.*   .*      .*      .*      .*      &/" infl_replies > infl_replies_regex
+$ grep -f infl_replies_regex combined_NOBOT.tsv > combined_infl_NOBOT.tsv
+
+So now I can just perform commands on that list of influencer only rows.
+$ cut -f 2 combined_infl_NOBOT.tsv | sort | uniq -c | wc -l
+774
+
+There are 774 unique users that have replied to the influencers.
+
+--------------------------------------------------------------
+
+3) 
+
+This follows a similar approach to getting the rows from 2), except I'm only getting the ones for the followers with a reply.
+$ cut -f 2 combined_infl_NOBOT.tsv | sort -g | uniq > followers_replies
+$ sed "s/./.*   .*      .*      .*      .*      &/" followers_replies > followers_replies_regex
+
+grep -f infl_replies_regex combined_NOBOT.tsv | sort -g -k 6 | less
+
+$ grep -f followers_replies_regex combined_NOBOT.tsv | cut -f 6 | sort -g | uniq | wc -l
+0
+
+There seems to be 0. I'm not sure if this is correct, or if I'm misunderstanding the data. But I expect the column 6 (overall) to contain the follower ids I got from column 2.
+The approach seems to make sense to me, but I may have made a mistake somewhere.
+
+-------------------------------------------------------------
+
+4)
+Again, using the rows of influencers I got in 2), I can just cut the date field and count that up.
+$ cut -f 3 combined_infl_NOBOT.tsv | cut -d " " -f 1 | sort | uniq -c | sort -n -k 1 | tail -n 10
+     34 2022-02-04
+     34 2022-02-07
+     34 2022-02-12
+     35 2022-03-25
+     36 2022-01-13
+     36 2022-02-16
+     38 2022-02-23
+     40 2022-02-24
+     43 2022-02-17
+     43 2022-02-26
+
+
+--------------------------------------------------------------
+
+5) 
+Again using the rows of influencers, I split every word on a space and also get rid of punctation, and people's @id and #hashtags in the messages.
+
+$ cut -f 8 combined_infl_NOBOT.tsv | sed "s/ \|\.\|\"\|?\|,/\n/g" | sed "s/@\|#.\+//" | grep . | sort -f | uniq -i -c | sort -n -k 1 > infl_words
+-----------------------------------------------------------------------------------------------------------
+     30 American
+     30 Believe
+     30 EVERY
+     30 Kids
+     30 Life
+     30 PANDEMIC
+     30 Schools
+     31 BEFORE
+     31 Care
+     31 Cases
+     31 EVERYONE
+     31 Election
+     31 GOP
+     31 HOPE
+     31 HouseGOP
+     31 J6
+     31 Let
+     31 Made
+     31 REALLY
+     32 Look
+     32 Yes
+     33 British
+     33 DEMOCRACY
+     33 Down
+     33 UNTIL
+     33 Year
+     33 ake2306
+     34 BOTH
+     34 Country
+     34 GIVE
+     34 julesserkin
+     35 Family
+     35 Masks
+     35 THANK
+     35 WITHOUT
+     36 Even
+     36 LAST
+     36 U
+     36 VOTE
+     36 spread
+     37 AGAIN
+     37 Health
+     37 Long
+     37 Russia
+     37 Say
+     37 Talk
+     37 UKRAINE
+     37 own
+     38 COULD
+     38 Party
+     38 virus
+     39 ANY
+     39 LOVE
+     39 Mask
+     39 REAL
+     39 WORK
+     40 BEST
+     40 BETTER
+     40 Going
+     41 Don't
+     41 Dr
+     41 UK
+     41 WHILE
+     42 BOT
+     42 Other
+     42 Well
+     43 CHILDREN
+     43 NEVER
+     43 NEW
+     44 3
+     44 DAY
+     44 Does
+     44 Traitor
+     44 WAR
+     45 Back
+     45 Help
+     45 WORLD
+     45 Way
+     46 1
+     46 POTUS
+     46 Putin
+     46 STOP
+     47 000
+     50 Don’t
+     50 fordnation
+     51 MUST
+     54 want
+     55 Into
+     55 SAME
+     55 See
+     55 THESE
+     55 off
+     56 MOST
+     56 SOME
+     57 Right
+     58 GOPLeader
+     61 CONservative
+     61 PUBLIC
+     62 AGAINST
+     62 Think
+     63 OVER
+     64 Canada
+     66 Trump
+     68 SUPPORT
+     72 Ontario
+     77 Time
+     79 2
+     79 COVID
+     93 Doug
+     95 US
+    146 FORD
+-----------------------------------------------------------------------------------------------------------
+The list was filtered for filler words, and is only an excerpt of the words greater than 30. The most surprising thing is that the most used noun is FORD (the car brand I believe.) Other than that, I see many of the same words that were seen in the previous assignments. There is a lot of covid related words, a lot of republican/government and Canadian government words, as well as a lot of Putin/Russia/Ukraine/War related words. There is a decent amount of talk about family, health, masks, and also about children and schools on the lower end. But the higher end is what I expect to see based on previous work.
