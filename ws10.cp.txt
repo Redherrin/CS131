@@ -1,0 +1,25 @@
+Script started on 2022-11-16 22:06:59-05:00
+]0;kevin@sjsu:~[kevin@sjsu ~]$ vi awk_numbers.shtime python3 numbers.py 
+min 0 max 15835 avg 9.33467921636312
+
+real	0m19.403s
+user	0m18.483s
+sys	0m0.920s
+]0;kevin@sjsu:~[kevin@sjsu ~]$ time python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pvi awk_numbers.shtime python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kgit push origin WS7commit -m "Adding ws7.txt and cmds.log"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[24Ppush origin WS7[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Ktime python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pvi awk_numbers.shtime python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ktime python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pvi awk_numbers.shtime python3 numbers.py [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ktime sh awk_numbers.sh 
+min 0 max 15835 avg 9.33468
+
+real	0m21.522s
+user	0m21.122s
+sys	0m0.400s
+]0;kevin@sjsu:~[kevin@sjsu ~]$ exit
+
+Script done on 2022-11-16 22:08:35-05:00
+
+------------------------
+
+Yes, I believe the Python script is faster than my awk script. The awk script contains this:
+============================
+#!/bin/bash
+
+awk -F"	" ' BEGIN {min=9999; max=0; sum=0; } NR>1{sum=sum+$9; if ($9 > max) max=$9; if ($9 < min) min=$9; } END { print "min " min " max " max " avg " sum/(NR-1); }' amazon_reviews_us_Books_v1_02.tsv
+=============================

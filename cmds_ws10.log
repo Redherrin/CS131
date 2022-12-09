@@ -1,0 +1,79 @@
+  996  ls
+  997  time python3 numbers.py 
+  998  vi awk_numbers.sh
+  999  clr
+ 1000  cl
+ 1001  ls
+ 1002  vi awk_numbers.sh 
+ 1003  time python3 awk_numbers.py 
+ 1004  ls
+ 1005  time sh awk_numbers.sh
+ 1006  vi awk_numbers.sh
+ 1007  ls
+ 1008  rm awk_numbers.sh.swp
+ 1009  ls
+ 1010  vi awk_numbers.sh
+ 1011  time sh awk_numbers.sh
+ 1012  time sh awk_numbers.sh || less
+ 1013  awk '{print $9}' | less
+ 1014  awk '{print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1015  awk FS="	" '{print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1016  awk 'BEGIN {FS="	"}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1017  vi awk_numbers.sh
+ 1018  awk 'BEGIN {FS="	"}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1019  awk NR>1'BEGIN {FS="	"}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1020  awk 'BEGIN {FS="	"; NR>1}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1021  awk 'BEGIN NR>1{FS="	"; NR>1}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1022  awk 'NR>1 BEGIN {FS="	"; NR>1}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1023  awk 'NR>1; BEGIN {FS="	";}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1024  awk 'NR>1; BEGIN {FS="	"}; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1025  awk 'NR>1; BEGIN {FS="	"} {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1026  awk 'NR>1; FS="	" {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1027  awk 'NR>1; FS="	"; {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1028  awk 'NR>1; FS="	" {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1029  awk 'NR>1, FS="	" {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1030  awk 'NR>1, FS="	", {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1031  awk 'FS="	" {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1032  awk 'FS="	" NR>1 {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1033  awk 'FS="	", NR>1 {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1034  awk -F"	" 'NR>1 {print $9}' amazon_reviews_us_Books_v1_02.tsv | less
+ 1035  vi awk_numbers.sh 
+ 1036  time sh awk_numbers.sh 
+ 1037  sh awk_numbers.sh 
+ 1038  sh awk_numbers.sh | less
+ 1039  vi awk_numbers.sh 
+ 1040  sh awk_numbers.sh | less
+ 1041  vi awk_numbers.sh 
+ 1042  sh awk_numbers.sh | less
+ 1043  vi awk_numbers.sh 
+ 1044  sh awk_numbers.sh | less
+ 1045  vi awk_numbers.sh 
+ 1046  sh awk_numbers.sh | less
+ 1047  vi awk_numbers.sh 
+ 1048  sh awk_numbers.sh | less
+ 1049  vi awk_numbers.sh 
+ 1050  sh awk_numbers.sh | less
+ 1051  vi awk_numbers.sh 
+ 1052  sh awk_numbers.sh | less
+ 1053  vi awk_numbers.sh 
+ 1054  time sh awk_numbers.sh
+ 1055  time python3 numbers.py
+ 1056  script ws10.txt
+ 1057  vi ws10.txt
+ 1058  cat awk_numbers.sh >> ws10.txt
+ 1059  vi ws10.txt
+ 1060  cd CS131
+ 1061  git status
+ 1062  bit branch 
+ 1063  git branch
+ 1064  git branch master
+ 1065  git checkout master
+ 1066  git status
+ 1067  git branch WS10
+ 1068  mkdir WS10
+ 1069  cd WS10
+ 1070  mv ~/awk_numbers.sh ./awk_numbers.sh
+ 1071  ls
+ 1072  mv ~/ws10.txt ./ws10.txt
+ 1073  ls
+ 1074  history > cmds.log
